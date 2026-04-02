@@ -1,0 +1,41 @@
+---
+title: "E-handelsanalys"
+author: "Grupp 5"
+date: "2026-04-02"
+output: html_document
+---
+# E-handelsanalys
+
+```{r}
+
+```
+
+## 1) Dataförståelse
+
+```{r}
+
+```
+
+## 2) Datastädning och förberedelse
+
+```{r}
+
+```
+
+## 3) Statistiska sammanfattningar
+
+```{r}
+
+```
+
+## 4) Visualisering
+
+```{r}
+
+```
+
+## 5) Tolkning och slutsatser
+
+```{r}
+
+```

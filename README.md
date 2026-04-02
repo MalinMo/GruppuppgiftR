@@ -1,2 +1,24 @@
 # GruppuppgiftR
 Gruppinlämningsuppgift
+
+## Körinstruktion
+**Öppna projektet**
+Öppna filen försäkringsanalys.Rmd i RStudio.
+
+**Paket som används**
+Installera paketen om du inte redan har dem:
+```r
+install.packages("tidyverse")
+```
+
+**Kör analysen**
+Klicka på Knit i RStudio för att rendera dokumentet. En HTML-fil skapas automatiskt i samma mapp.
+
+## Ansvarsfördelning
+1) Dataförståelse - Malin
+2) Datastädning och förberedelse - Isac
+3) Statistiska sammanfattningar - Ali
+4) Visualisering - Ida
+5) Tolkning och slutsatser - Josefina
+Rapport - 
+PowerPoint - 

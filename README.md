@@ -20,5 +20,7 @@ Klicka på Knit i RStudio för att rendera dokumentet. En HTML-fil skapas automa
 3) Statistiska sammanfattningar - Ali
 4) Visualisering - Ida
 5) Tolkning och slutsatser - Josefina
+
 Rapport - 
+
 PowerPoint - 

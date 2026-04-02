@@ -28,6 +28,12 @@ orders_raw %>%
     across(everything(), ~ sum(is.na(.)))) %>% 
         pivot_longer(everything(), names_to = "kolumn", values_to = "saknas värden")
 
+# Identifiera multipla varianter av städer
+orders_raw %>%
+  distinct(city) %>%
+  arrange(city) %>%
+  print(n = Inf)
+
 # beskriva kort vilka delar av datan som verkar viktigast för er analys
 # --3. Finns det samband mellan rabatt och ordervärde?
 # --5. Finns det tecken på att längre leveranstid hänger ihop med fler returer?
@@ -39,3 +45,18 @@ orders_raw %>%
 # för fråga 5: shipping days och returned
 # Egen fråga: unit_price x quantity, discount_pct, returned och customer_type
 # Notera: order_value behöver beräknas: unit_price * quantity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

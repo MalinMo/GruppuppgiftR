@@ -9,6 +9,7 @@ Gruppinlämningsuppgift
 Installera paketen om du inte redan har dem:
 ```r
 install.packages("tidyverse")
+library(skimr)
 ```
 
 **Kör analysen**

@@ -1,32 +1,20 @@
 library(tidyverse)
+library(skimr)
 
-orders_raw <- read_csv("ecommerce_orders.csv")
+
+orders_raw <- read_csv("data/ecommerce_orders.csv")
 
 # 1) Dataförståelse
 
-# datasetets storlek
+# Översikt över datasetet
 glimpse(orders_raw)
+skim_without_charts(orders_raw)
 
-# typer av variabler som finns
-# --vilka variabler som finns
-names(orders_raw)
-
-# --vilka variabler som är numeriska
-orders_raw %>% 
-  select(where(is.numeric)) %>% 
-  names()
-
-# --vilka variabler som är kategoriska eller text
-orders_raw %>% 
-  select(where(is.character)) %>% 
-  names()
-
-# identifiera saknade värden
-# --i vilka kolumner finns det saknade värden
-orders_raw %>% 
-  summarise(
-    across(everything(), ~ sum(is.na(.)))) %>% 
-        pivot_longer(everything(), names_to = "kolumn", values_to = "saknas värden")
+# Kontroll av eventuella outliers i unit_price
+orders_raw %>%
+  arrange(desc(unit_price)) %>%
+  select(product_category, product_subcategory, unit_price, quantity) %>%
+  head(5)
 
 # Identifiera multipla varianter av städer
 orders_raw %>%
@@ -46,7 +34,23 @@ orders_raw %>%
 # Egen fråga: unit_price x quantity, discount_pct, returned och customer_type
 # Notera: order_value behöver beräknas: unit_price * quantity
 
+# NOTERINGAR FRÅN DATAFÖRSTÅELSE
+# ================================
+# Datatyper: förslag på vad som bör ändras i stadning.R:
+# - customer_segment, customer_type, region, city, product_category, product_subcategory, payment_method, campaign_source → factor
+# - customer_type kan göras till ordnad faktor: New < Returning < VIP
+# - returned till logical (Yes/No till TRUE/FALSE)
 
+# Saknade värden: förslag på hantering i stadning.R:
+# - city (21 st): påverkar inte våra analysfrågor, kan lämnas
+# - payment_method (25 st): påverkar inte våra analysfrågor, kan lämnas
+# - campaign_source (31 st): påverkar inte våra analysfrågor, kan lämnas
+# - discount_pct (27 st): påverkar fråga 3 - då rabatt 0 finns angivet så är det troligt att NA är 0 och kan ersättas med det
+# - shipping_days (22 st): påverkar fråga 5 - ta bort rader vid analys
+
+# Övrigt att notera:
+# - city har stavningsvarianter som behöver städas (se distinct-körningen)
+# - unit_price max = 1626, ha i åtanke att använda median vid behov
 
 
 

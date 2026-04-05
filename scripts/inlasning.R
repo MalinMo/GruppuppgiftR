@@ -32,7 +32,7 @@ orders_raw %>%
 # För fråga 3: discount_pct, unit_price x quantity
 # för fråga 5: shipping days och returned
 # Egen fråga: unit_price x quantity, discount_pct, returned och customer_type
-# Notera: order_value behöver beräknas: unit_price * quantity
+# Notera: order_value behöver beräknas: unit_price * quantity * (1 - discount_pct)
 
 # NOTERINGAR FRÅN DATAFÖRSTÅELSE
 # ================================

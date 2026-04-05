@@ -3,7 +3,7 @@ Gruppinlämningsuppgift
 
 ## Körinstruktion
 **Öppna projektet**
-Öppna filen försäkringsanalys.Rmd i RStudio.
+Öppna filen ecommerce_analys.Rmd i RStudio.
 
 **Paket som används**
 Installera paketen om du inte redan har dem:
@@ -19,7 +19,7 @@ Klicka på Knit i RStudio för att rendera dokumentet. En HTML-fil skapas automa
 2) Datastädning och förberedelse - Isac
 3) Statistiska sammanfattningar - Ali
 4) Visualisering - Ida
-5) Tolkning och slutsatser - Josefina
+5) Tolkning och slutsatser (sammanställa i ecommerce_analys.Rmd) - Josefina
 
 Rapport - 
 

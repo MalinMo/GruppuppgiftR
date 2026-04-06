@@ -1,5 +1,6 @@
 library(tidyverse)
 library(skimr)
+library(patchwork)
 
 
 orders_raw <- read_csv("data/ecommerce_orders.csv")
@@ -21,6 +22,35 @@ orders_raw %>%
   distinct(city) %>%
   arrange(city) %>%
   print(n = Inf)
+
+#Fördelning av kategoriska variabler av betydelse för våra frågor
+orders_raw %>% count(customer_type, sort = TRUE)
+orders_raw %>% count(returned, sort = TRUE)
+
+p1 <- ggplot(orders_raw, aes(x = customer_type)) +
+  geom_bar(fill = "steelblue") +
+  labs(title = "Antal order per kundtyp",
+       x = "Kundtyp",
+       y = "Antal")
+
+p2 <- ggplot(orders_raw, aes(x = returned)) +
+  geom_bar(fill = "steelblue") +
+  labs(title = "Antal returer",
+       x = "Returnerad",
+       y = "Antal")
+
+p3 <- ggplot(orders_raw, aes(y = unit_price)) +
+  geom_boxplot(fill = "steelblue") +
+  labs(title = "Fördelning av unit_price",
+       y = "Pris")
+
+p4 <- ggplot(orders_raw, aes(y = shipping_days)) +
+  geom_boxplot(fill = "steelblue") +
+  labs(title = "Fördelning av shipping_days",
+       y = "Leveransdagar")
+
+p1 + p2 + p3 + p4
+# Om en 2x2 behövs i Rmd-filen så skriv (p1 + p2) / (p3 + p4)
 
 # beskriva kort vilka delar av datan som verkar viktigast för er analys
 # --3. Finns det samband mellan rabatt och ordervärde?

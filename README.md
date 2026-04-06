@@ -9,7 +9,8 @@ Gruppinlämningsuppgift
 Installera paketen om du inte redan har dem:
 ```r
 install.packages("tidyverse")
-library(skimr)
+install.packages("skimr")
+install:pacakges("patchwork")
 ```
 
 **Kör analysen**

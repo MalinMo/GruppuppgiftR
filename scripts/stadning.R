@@ -59,12 +59,25 @@ orders_clean %>%
   head(10)
 
 
+# customer_segment görs till vanlig faktor 
+# customer_type görs till ordnad faktor (New -> Returning -> VIP)
+orders_clean <- orders_clean %>%
+  mutate(
+    customer_segment = as.factor(customer_segment),
+    customer_type = factor(customer_type,
+                           levels = c("New", "Returning", "VIP"),
+                           ordered = TRUE)
+  )
+
+str(orders_clean)
+
 # Sammanfattning:
 # - returned har gjorts om från text till logisk variabel (TRUE/FALSE)
 # - city har standardiserats för att undvika dubbla stavningsvarianter
 # - saknade värden i discount_pct och shipping_days har kontrollerats
 # - inga osäkra ersättningar har gjorts för NA-värden
 # - nya analysvariabler har skapats: order_value och price_after_discount
+# - customer_segment är nu en faktor och customer_type är en ordnad faktor (New -> Returning -> VIP)
 
 
 

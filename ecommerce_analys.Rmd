@@ -220,8 +220,17 @@ Vidare kan det vara relevant att rikta särskilda åtgärder mot nya kunder, eft
 
 ### Begränsningar
 
-Analysen baseras på ett begränsat dataset och visar endast samband, inte kausala samband. Det innebär att vi inte kan fastställa att exempelvis längre leveranstid orsakar fler returer, endast att de samvarierar.
+Baserat på analysen rekommenderas företaget att prioritera åtgärder som kan förbättra leveranstider, eftersom detta verkar ha en tydlig koppling till returgraden. Snabbare och mer tillförlitliga leveranser kan bidra till ökad kundnöjdhet och minskade kostnader för returer.
 
-Det kan även finnas andra faktorer som påverkar resultaten, såsom produkttyp, prisnivå eller kundpreferenser, vilka inte har inkluderats i denna analys.
+Vidare bör företagets användning av rabatter ses över. Eftersom analysen inte visar något tydligt samband mellan rabatt och ordervärde kan det vara mer effektivt att använda rabatter mer strategiskt, exempelvis riktat mot specifika kundgrupper eller kampanjer.
+
+Det kan även vara värdefullt att arbeta mer aktivt med nya kunder, då dessa visar en något högre returgrad. Detta kan exempelvis göras genom tydligare produktinformation eller förbättrad kundkommunikation.
+
+### Nästa steg
+För att fördjupa analysen rekommenderas att inkludera fler variabler, såsom produktkategori eller kampanjkälla, för att undersöka om dessa påverkar ordervärde och returgrad.
+
+Det kan också vara relevant att genomföra mer avancerade analyser, exempelvis regressionsanalyser, för att bättre förstå vilka faktorer som har störst påverkan på kundbeteende.
+
+Slutligen kan det vara värdefullt att analysera data över tid för att identifiera säsongsmönster eller förändringar i kundbeteende.
 
 ```

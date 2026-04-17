@@ -183,16 +183,45 @@ Diagrammet över returgrad per kundtyp visar att nya kunder har en något högre
 
 ## 5) Tolkning och slutsatser
 
-Analysen besvarar följande frågeställningar:
+### Tolkning
 
-1. Finns det samband mellan rabatt och ordervärde?
-Resultatet visar att sambandet är mycket svagt. Rabatter verkar därför inte ha någon tydlig påverkan på ordervärdet.
+Analysen syftade till att undersöka samband mellan rabatt och ordervärde, leveranstid och returer samt skillnader i köpbeteende mellan olika kundtyper.
 
-2. Finns det tecken på att längre leveranstid hänger ihop med fler returer?
-Ja, analysen visar att returnerade ordrar i genomsnitt har längre leveranstid. Detta tyder på att leveranstiden kan påverka sannolikheten för retur.
+Resultaten visar att sambandet mellan rabatt och ordervärde är mycket svagt. Korrelationen är nära noll (≈ 0,002), och spridningen i visualiseringen är stor utan någon tydlig trend. Detta indikerar att rabatter inte har någon betydande påverkan på ordervärdet i detta dataset.
 
-3. Skiljer sig köpbeteendet mellan olika kundtyper?
-Ja, det finns vissa skillnader. Nya kunder har högst ordervärde men också högst returgrad. Återkommande och VIP-kunder har lägre returgrad, vilket kan tyda på mer stabilt köpbeteende.
+Däremot finns indikationer på ett samband mellan leveranstid och returgrad. Den genomsnittliga leveranstiden är högre för returnerade ordrar (≈ 3,98 dagar) jämfört med ej returnerade (≈ 3,55 dagar), och visualiseringen visar att andelen returer ökar vid längre leveranstider. Detta tyder på att leveranstiden kan påverka kundens benägenhet att returnera varor.
 
-Sammanfattningsvis visar analysen att leveranstid är en viktigare faktor än rabatt när det gäller kundbeteende och returer, samt att nya kunder är en grupp med högre osäkerhet i sina köp.
+Analysen av kundtyper visar att det genomsnittliga ordervärdet är relativt likartat mellan grupperna, där nya kunder har något högre ordervärde än övriga. VIP-kunder har däremot högst genomsnittlig rabatt. Returgraden är något högre för nya kunder jämfört med återkommande och VIP-kunder. Boxplotten visar också att återkommande kunder uppvisar fler extremvärden i ordervärde.
+
+---
+
+### Svar på frågeställningar
+
+**1. Finns det samband mellan rabatt och ordervärde?**
+Nej, analysen visar inget tydligt samband mellan rabatt och ordervärde. Korrelationen är nära noll och visualiseringen visar en stor spridning utan tydlig trend. Detta tyder på att rabatter inte påverkar ordervärdet i någon större utsträckning.
+
+**2. Finns det tecken på att längre leveranstid hänger ihop med fler returer?**
+Ja, det finns tecken på ett samband. Den genomsnittliga leveranstiden är högre för returnerade ordrar, och andelen returer ökar vid längre leveranstider. Detta indikerar att längre leveranstid kan bidra till en högre returgrad.
+
+**3. Skiljer sig köpbeteendet mellan olika kundtyper?**
+Ja, vissa skillnader kan observeras. Nya kunder har något högre ordervärde och högre returgrad, medan VIP-kunder får högre rabatter. Samtidigt är skillnaderna i ordervärde relativt små mellan grupperna.
+
+---
+
+### Slutsatser
+
+Den viktigaste insikten från analysen är att leveranstid verkar ha större påverkan på kundbeteende än rabatter. Företaget bör därför prioritera effektiva och snabba leveranser för att minska returgraden och förbättra kundupplevelsen.
+
+Resultaten visar även att rabatter inte har någon tydlig effekt på ordervärdet, vilket kan innebära att nuvarande rabattstrategi inte driver ökad försäljning. Detta kan motivera en översyn av hur och när rabatter används.
+
+Vidare kan det vara relevant att rikta särskilda åtgärder mot nya kunder, eftersom de uppvisar en något högre returgrad.
+
+---
+
+### Begränsningar
+
+Analysen baseras på ett begränsat dataset och visar endast samband, inte kausala samband. Det innebär att vi inte kan fastställa att exempelvis längre leveranstid orsakar fler returer, endast att de samvarierar.
+
+Det kan även finnas andra faktorer som påverkar resultaten, såsom produkttyp, prisnivå eller kundpreferenser, vilka inte har inkluderats i denna analys.
+
 ```

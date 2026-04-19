@@ -52,6 +52,8 @@ customer_summary <- orders_clean %>%
   # Steg 2: "Apply & Combine" - Räkna ut medelvärden
   summarize(
     avg_order_value = mean(order_value, na.rm = TRUE),
+    avg_quantity    = mean(quantity, na.rm = TRUE),      # Ny rad: testar antal varor
+    avg_unit_price  = mean(unit_price, na.rm = TRUE),    # Ny rad: testar snittpris per vara
     avg_discount = mean(discount_pct, na.rm = TRUE),
     
     # Eftersom 'returned' är TRUE/FALSE (1/0), ger mean() oss en procentandel!

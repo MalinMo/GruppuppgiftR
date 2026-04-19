@@ -129,14 +129,20 @@ customer_summary
 ```
 För att besvara frågeställningarna genomfördes följande analyser:
 
-Sambandet mellan rabatt och ordervärde är mycket svagt (korrelation ≈ 0.002), vilket tyder på att rabattnivån inte har någon tydlig påverkan på hur mycket kunder handlar.
+Kundsegment och Köpbeteende:
+Datan visar att nya kunder har det högsta snittordervärdet (368 kr), men de har också den överlägset högsta returgraden på nästan 18 %. VIP-kunder spenderar minst per köp (319 kr) trots att de får den högsta snittrabatten (11,4 %).
 
-Den genomsnittliga leveranstiden är något högre för returnerade ordrar (≈ 3.98 dagar) jämfört med icke returnerade (≈ 3.55 dagar), vilket indikerar ett möjligt samband mellan leveranstid och returer.
+Vi testade hypotesen att de nya kundernas högre ordervärde berodde på att de lade till fler (och billigare) varor, men datan visade att alla kundgrupper köper exakt lika många varor per order (i snitt 1,37 st).
 
-När det gäller kundtyper visar analysen att:
-- Nya kunder har högst genomsnittligt ordervärde (≈ 368)
-- VIP-kunder har högst genomsnittlig rabatt (≈ 11 %)
-- Nya kunder har högst returgrad (≈ 18 %), medan återkommande och VIP-kunder ligger runt 13 %
+Vi testade även om VIP-kundernas höga rabatt motiverades av att de handlade oftare (högre Customer Lifetime Value). Datan motbevisade dock detta: VIP-kunder handlar i snitt 3,7 gånger, vilket är lägre än vanliga återkommande kunder (4,1 gånger). Företagets VIP-strategi verkar därmed vara ineffektiv och bör ses över.
+
+Rabatter vs. Ordervärde:
+För att se om större rabatter får kunder att spendera mer pengar genomförde vi ett korrelationstest. Resultatet blev 0,0016, vilket är extremt nära noll. Detta visar att det inte finns något linjärt samband mellan rabattens storlek och det slutgiltiga ordervärdet. Kunder tenderar att köpa det de har tänkt köpa, oavsett om de får 5 % eller 20 % i rabatt.
+
+Leveranstider vs. Returer:
+Vi undersökte om det fanns en koppling mellan längre leveranstider och antalet returer. Datan visar en tydlig samvariation: ordrar som behölls av kunden hade en genomsnittlig leveranstid på 3,55 dagar, medan varor som returnerades hade varit på väg i snitt 3,98 dagar (en skillnad på nästan en halv dag).
+
+Observera: Vi kan inte fastställa att förseningen i sig är den direkta orsaken till returen (det kan finnas bakomliggande faktorer, t.ex. att skrymmande varor tar längre tid att frakta och returneras oftare). Det är dock en viktig varningssignal för logistikavdelningen att undersöka vidare, då längre väntetid kan öka risken för att kunden ångrar sitt köp.
 
 ## 4) Visualisering
 

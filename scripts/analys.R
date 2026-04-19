@@ -57,7 +57,12 @@ customer_summary <- orders_clean %>%
     avg_discount = mean(discount_pct, na.rm = TRUE),
     
     # Eftersom 'returned' är TRUE/FALSE (1/0), ger mean() oss en procentandel!
-    return_rate = mean(returned, na.rm = TRUE) 
+    return_rate = mean(returned, na.rm = TRUE), 
+    
+    # Beräkna hur ofta varje kund handlar i snitt
+    total_orders = n(),
+    unique_customers = n_distinct(customer_id),
+    avg_purchases = n() / n_distinct(customer_id)
   )
 
 # Visa tabellen

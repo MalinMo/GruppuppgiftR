@@ -1,0 +1,151 @@
+---
+title: "E-handelsanalys rapport"
+author: "Grupp 5"
+date: "2026-04-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+options(width = 200)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+# Försök använda svensk locale på olika operativsystem.
+suppressWarnings(try(Sys.setlocale("LC_ALL", "Swedish"), silent = TRUE))
+suppressWarnings(try(Sys.setlocale("LC_ALL", "sv_SE.UTF-8"), silent = TRUE))
+suppressWarnings(try(Sys.setlocale("LC_ALL", "Swedish_Sweden.1252"), silent = TRUE))
+
+library(tidyverse)
+library(skimr)
+library(patchwork)
+
+orders_raw <- readr::read_csv("data/ecommerce_orders.csv")
+```
+
+```{r}
+orders_clean <- orders_raw
+
+orders_clean <- orders_clean %>%
+  mutate(returned = returned == "Yes")
+
+orders_clean <- orders_clean %>%
+  mutate(city = str_trim(city),
+         city = str_to_title(city))
+
+orders_clean <- orders_clean %>%
+  mutate(
+    order_value = unit_price * quantity,
+    price_after_discount = order_value * (1 - discount_pct)
+  )
+
+orders_clean <- orders_clean %>%
+  mutate(
+    customer_segment = as.factor(customer_segment),
+    customer_type = factor(customer_type,
+                           levels = c("New", "Returning", "VIP"),
+                           ordered = TRUE)
+  )
+
+```
+
+
+Syftet med analysen är att skapa en bättre förståelse för försäljning, kundbeteende och returer i e-handeln.
+
+Analysen fokuserar på följande frågeställningar:
+
+1. Finns det samband mellan rabatt och ordervärde?
+2. Finns det tecken på att längre leveranstid hänger ihop med fler returer?
+3. Skiljer sig köpbeteendet mellan nya, återkommande och VIP-kunder?
+
+
+## Metod och resultat
+
+För att besvara frågeställningarna genomfördes följande analyser:
+
+Kundsegment och Köpbeteende:
+Datan visar att nya kunder har det högsta snittordervärdet (368 kr), men de har också den överlägset högsta returgraden på nästan 18 %. VIP-kunder spenderar minst per köp (319 kr) trots att de får den högsta snittrabatten (11,4 %).
+
+Vi testade hypotesen att de nya kundernas högre ordervärde berodde på att de lade till fler (och billigare) varor, men datan visade att alla kundgrupper köper exakt lika många varor per order (i snitt 1,37 st).
+
+Vi testade även om VIP-kundernas höga rabatt motiverades av att de handlade oftare (högre Customer Lifetime Value). Datan motbevisade dock detta: VIP-kunder handlar i snitt 3,7 gånger, vilket är lägre än vanliga återkommande kunder (4,1 gånger). Företagets VIP-strategi verkar därmed vara ineffektiv och bör ses över.
+
+Rabatter vs. Ordervärde:
+För att se om större rabatter får kunder att spendera mer pengar genomförde vi ett korrelationstest. Resultatet blev 0,0016, vilket är extremt nära noll. Detta visar att det inte finns något linjärt samband mellan rabattens storlek och det slutgiltiga ordervärdet. Kunder tenderar att köpa det de har tänkt köpa, oavsett om de får 5 % eller 20 % i rabatt.
+
+Leveranstider vs. Returer:
+Vi undersökte om det fanns en koppling mellan längre leveranstider och antalet returer. Datan visar en tydlig samvariation: ordrar som behölls av kunden hade en genomsnittlig leveranstid på 3,55 dagar, medan varor som returnerades hade varit på väg i snitt 3,98 dagar (en skillnad på nästan en halv dag).
+
+Observera: Vi kan inte fastställa att förseningen i sig är den direkta orsaken till returen (det kan finnas bakomliggande faktorer, t.ex. att skrymmande varor tar längre tid att frakta och returneras oftare). Det är dock en viktig varningssignal för logistikavdelningen att undersöka vidare, då längre väntetid kan öka risken för att kunden ångrar sitt köp.
+
+
+```{r}
+p_discount <- ggplot(orders_clean, aes(x = discount_pct, y = order_value)) + 
+  geom_point(alpha = 0.5, color = "steelblue") +
+  geom_smooth(method = "lm", se = TRUE)
+
+p_discount
+
+orders_clean <- orders_clean %>%
+  mutate(
+    shipping_group = case_when(
+      shipping_days <= 3 ~ "Snabb",
+      shipping_days <= 7 ~ "Medel snabb",
+      TRUE ~ "Lång"
+    )
+  )
+
+p_shipping_return <- ggplot(orders_clean, aes(x = shipping_group, fill = factor(returned))) + 
+  geom_bar(position = "fill")
+
+p_shipping_return
+
+```
+
+Visualiseringarna bekräftar resultaten från de statistiska analyserna.
+
+Spridningsdiagrammet visar att det inte finns något tydligt samband mellan rabatt och ordervärde, vilket stöds av den låga korrelationen.
+
+Diagrammet över leveranstid visar att andelen returer är högst vid längre leveranstider och minskar vid snabbare leverans.
+
+Boxplotten visar att ordervärdet är relativt liknande mellan kundtyperna, även om vissa variationer förekommer.
+
+Diagrammet över returgrad per kundtyp visar att nya kunder har en något högre andel returer än övriga kundtyper.
+
+## Slutsatser och begränsningar
+
+Analysen syftade till att undersöka samband mellan rabatt och ordervärde, leveranstid och returer samt skillnader i köpbeteende mellan olika kundtyper.
+
+Resultaten visar att sambandet mellan rabatt och ordervärde är mycket svagt. Korrelationen är nära noll (≈ 0,002), och spridningen i visualiseringen är stor utan någon tydlig trend. Detta indikerar att rabatter inte har någon betydande påverkan på ordervärdet i detta dataset.
+
+Däremot finns indikationer på ett samband mellan leveranstid och returgrad. Den genomsnittliga leveranstiden är högre för returnerade ordrar (≈ 3,98 dagar) jämfört med ej returnerade (≈ 3,55 dagar), och visualiseringen visar att andelen returer ökar vid längre leveranstider. Detta tyder på att leveranstiden kan påverka kundens benägenhet att returnera varor.
+
+Analysen av kundtyper visar att det genomsnittliga ordervärdet är relativt likartat mellan grupperna, där nya kunder har något högre ordervärde än övriga. VIP-kunder har däremot högst genomsnittlig rabatt. Returgraden är något högre för nya kunder jämfört med återkommande och VIP-kunder. Boxplotten visar också att återkommande kunder uppvisar fler extremvärden i ordervärde.
+
+---
+
+### Slutsatser
+
+Den viktigaste insikten från analysen är att leveranstid verkar ha större påverkan på kundbeteende än rabatter. Företaget bör därför prioritera effektiva och snabba leveranser för att minska returgraden och förbättra kundupplevelsen.
+
+Resultaten visar även att rabatter inte har någon tydlig effekt på ordervärdet, vilket kan innebära att nuvarande rabattstrategi inte driver ökad försäljning. Detta kan motivera en översyn av hur och när rabatter används.
+
+Vidare kan det vara relevant att rikta särskilda åtgärder mot nya kunder, eftersom de uppvisar en något högre returgrad.
+
+---
+
+### Begränsningar
+
+Baserat på analysen rekommenderas företaget att prioritera åtgärder som kan förbättra leveranstider, eftersom detta verkar ha en tydlig koppling till returgraden. Snabbare och mer tillförlitliga leveranser kan bidra till ökad kundnöjdhet och minskade kostnader för returer.
+
+Vidare bör företagets användning av rabatter ses över. Eftersom analysen inte visar något tydligt samband mellan rabatt och ordervärde kan det vara mer effektivt att använda rabatter mer strategiskt, exempelvis riktat mot specifika kundgrupper eller kampanjer.
+
+Det kan även vara värdefullt att arbeta mer aktivt med nya kunder, då dessa visar en något högre returgrad. Detta kan exempelvis göras genom tydligare produktinformation eller förbättrad kundkommunikation.
+
+### Nästa steg
+
+För att fördjupa analysen rekommenderas att inkludera fler variabler, såsom produktkategori eller kampanjkälla, för att undersöka om dessa påverkar ordervärde och returgrad.
+
+Det kan också vara relevant att genomföra mer avancerade analyser, exempelvis regressionsanalyser, för att bättre förstå vilka faktorer som har störst påverkan på kundbeteende.
+
+Slutligen kan det vara värdefullt att analysera data över tid för att identifiera säsongsmönster eller förändringar i kundbeteende.
+
+```

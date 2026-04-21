@@ -23,6 +23,6 @@ Klicka på Knit i RStudio för att rendera dokumentet. En HTML-fil skapas automa
 4) Visualisering - Ida
 5) Tolkning och slutsatser (sammanställa i ecommerce_analys.Rmd) - Josefina
 
-Rapport - 
+Rapport - Malin
 
-PowerPoint - 
+PowerPoint - Malin, Isac, Ali, Ida, Josefina

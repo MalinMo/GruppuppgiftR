@@ -4,6 +4,23 @@ author: "Grupp 5"
 date: "2026-04-02"
 output: html_document
 ---
+
+```{r setup, include=FALSE}
+options(width = 200)
+knitr::opts_chunk$set(echo = TRUE)
+
+# Försök använda svensk locale på olika operativsystem.
+suppressWarnings(try(Sys.setlocale("LC_ALL", "Swedish"), silent = TRUE))
+suppressWarnings(try(Sys.setlocale("LC_ALL", "sv_SE.UTF-8"), silent = TRUE))
+suppressWarnings(try(Sys.setlocale("LC_ALL", "Swedish_Sweden.1252"), silent = TRUE))
+
+library(tidyverse)
+library(skimr)
+library(patchwork)
+
+orders_raw <- readr::read_csv("data/ecommerce_orders.csv")
+```
+
 # E-handelsanalys
 
 Syftet med analysen är att skapa en bättre förståelse för försäljning, kundbeteende och returer i e-handeln.

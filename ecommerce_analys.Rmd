@@ -216,21 +216,6 @@ Däremot finns indikationer på ett samband mellan leveranstid och returgrad. De
 
 Analysen av kundtyper visar att det genomsnittliga ordervärdet är relativt likartat mellan grupperna, där nya kunder har något högre ordervärde än övriga. VIP-kunder har däremot högst genomsnittlig rabatt. Returgraden är något högre för nya kunder jämfört med återkommande och VIP-kunder. Boxplotten visar också att återkommande kunder uppvisar fler extremvärden i ordervärde.
 
----
-
-### Svar på frågeställningar
-
-**1. Finns det samband mellan rabatt och ordervärde?**
-Nej, analysen visar inget tydligt samband mellan rabatt och ordervärde. Korrelationen är nära noll och visualiseringen visar en stor spridning utan tydlig trend. Detta tyder på att rabatter inte påverkar ordervärdet i någon större utsträckning.
-
-**2. Finns det tecken på att längre leveranstid hänger ihop med fler returer?**
-Ja, det finns tecken på ett samband. Den genomsnittliga leveranstiden är högre för returnerade ordrar, och andelen returer ökar vid längre leveranstider. Detta indikerar att längre leveranstid kan bidra till en högre returgrad.
-
-**3. Skiljer sig köpbeteendet mellan olika kundtyper?**
-Ja, vissa skillnader kan observeras. Nya kunder har något högre ordervärde och högre returgrad, medan VIP-kunder får högre rabatter. Samtidigt är skillnaderna i ordervärde relativt små mellan grupperna.
-
----
-
 ### Slutsatser
 
 Den viktigaste insikten från analysen är att leveranstid verkar ha större påverkan på kundbeteende än rabatter. Företaget bör därför prioritera effektiva och snabba leveranser för att minska returgraden och förbättra kundupplevelsen.
@@ -239,21 +224,26 @@ Resultaten visar även att rabatter inte har någon tydlig effekt på ordervärd
 
 Vidare kan det vara relevant att rikta särskilda åtgärder mot nya kunder, eftersom de uppvisar en något högre returgrad.
 
----
-
-### Begränsningar
+### Rekommendationer
 
 Baserat på analysen rekommenderas företaget att prioritera åtgärder som kan förbättra leveranstider, eftersom detta verkar ha en tydlig koppling till returgraden. Snabbare och mer tillförlitliga leveranser kan bidra till ökad kundnöjdhet och minskade kostnader för returer.
 
 Vidare bör företagets användning av rabatter ses över. Eftersom analysen inte visar något tydligt samband mellan rabatt och ordervärde kan det vara mer effektivt att använda rabatter mer strategiskt, exempelvis riktat mot specifika kundgrupper eller kampanjer.
 
-Det kan även vara värdefullt att arbeta mer aktivt med nya kunder, då dessa visar en något högre returgrad. Detta kan exempelvis göras genom tydligare produktinformation eller förbättrad kundkommunikation.
+Det kan även vara värdefullt att arbeta mer aktivt med nya kunder, då dessa visar en något högre returgrad. Detta kan exempelvis göras genom tydligare produktinformation, rabatter eller förbättrad kundkommunikation.
+
+### Begränsningar
+
+Analysen visar samband men inte orsakssamband. Det innebär att vi inte kan fastställa att exempelvis längre leveranstid orsakar fler returer, endast att de samvarierar.
+
+Datasetet är relativt begränsat och baseras på ett urval av data, vilket kan påverka generaliserbarheten av resultaten.
+
+Det kan även finnas andra faktorer som påverkar resultaten, såsom produktkategori, prisnivå eller kundpreferenser, vilka inte har inkluderats i denna analys.
 
 ### Nästa steg
+
 För att fördjupa analysen rekommenderas att inkludera fler variabler, såsom produktkategori eller kampanjkälla, för att undersöka om dessa påverkar ordervärde och returgrad.
 
 Det kan också vara relevant att genomföra mer avancerade analyser, exempelvis regressionsanalyser, för att bättre förstå vilka faktorer som har störst påverkan på kundbeteende.
 
 Slutligen kan det vara värdefullt att analysera data över tid för att identifiera säsongsmönster eller förändringar i kundbeteende.
-
-```

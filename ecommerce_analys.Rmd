@@ -194,6 +194,7 @@ p_customer_return <- ggplot(orders_clean, aes(x = customer_type, fill = factor(r
 
 p_customer_return
 ```
+
 Visualiseringarna bekräftar resultaten från de statistiska analyserna.
 
 Spridningsdiagrammet visar att det inte finns något tydligt samband mellan rabatt och ordervärde, vilket stöds av den låga korrelationen.
